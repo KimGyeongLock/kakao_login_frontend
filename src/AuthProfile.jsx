@@ -62,7 +62,7 @@ const AuthProfile = () => {
                     type='text'
                     className='todo-input'
                     value={todo}
-                    onChange={}
+                    // onChange={}
                     placeholder='새 할 일을 입력하세요'
                 />
                 <button className='todo-button'>저장</button>
