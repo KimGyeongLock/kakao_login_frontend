@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './App.css';
 
 const AuthProfile = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState(null);
+    const [todo, setTodo] = useState('')
 
     useEffect(() => {
         const code = new URLSearchParams(location.search).get('code');
@@ -41,15 +43,30 @@ const AuthProfile = () => {
             });
     };
 
+
+
     return (
         <div>
-            <h1>{userInfo ? "Welcome, " + userInfo.properties.nickname : "로딩중..."}</h1>
-            {userInfo && (
-                <div>
-                    <img src={userInfo.properties.profile_image} alt="Profile" />
-                </div>
-            )}
-            {userInfo && <button onClick={handleLogout}>로그아웃</button>}
+            <div className='profile'>
+                {userInfo && (
+                    <div>
+                        <img src={userInfo.properties.profile_image} alt="Profile" className='profile-image'/>
+                    </div>
+                )}
+                <h1>{userInfo ? "Welcome, " + userInfo.properties.nickname : "로딩중..."}</h1>
+                {userInfo && <button onClick={handleLogout}>로그아웃</button>}
+            </div>
+            <h1>To-do List</h1>
+            <div className='todo-form'>
+                <input 
+                    type='text'
+                    className='todo-input'
+                    value={todo}
+                    onChange={}
+                    placeholder='새 할 일을 입력하세요'
+                />
+                <button className='todo-button'>저장</button>
+            </div>
         </div>
     );
 };
